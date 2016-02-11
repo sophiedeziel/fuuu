@@ -1,5 +1,7 @@
 # Fuuu
 
+![alt tag](https://raw.githubusercontent.com/sophiedeziel/fuuu/master/fuuu.jpg)
+
 Copy/pasting error messages? It's so 2015!
 
 Fuuu is a development tool that automates Stack Overflow searches.
