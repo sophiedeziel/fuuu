@@ -1,8 +1,8 @@
 # Fuuu
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fuuu`. To experiment with that code, run `bin/console` for an interactive prompt.
+Copy/pasting error messages? It's so 2015!
 
-TODO: Delete this and the text above, and describe your gem
+Fuuu is a development tool that automates Stack Overflow searches.
 
 ## Installation
 
@@ -22,7 +22,30 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+When you have a line of code that throws an exception and you can't figure out why, put that line in a block and pass it to fuuu.
+
+```ruby
+nil.a_method_that_throws_undefined_method
+# => NoMethodError: undefined method `a_method_that_throws_undefined_method' for nil:NilClass
+
+fuuu { nil.a_method_that_throws_undefined_method }
+# It will open http://stackoverflow.com/search?q=[ruby]"undefined method `a_method_that_throws_undefined_method' for nil:NilClass" in your default browser
+
+```
+
+If you foget how many 'u's there are, put as much as you want.
+
+```ruby
+fuuu { nil.foo }
+# works
+
+fu { nil.foo }
+# works
+
+fuuuuuuuuuuuuuuuuuuuuuuuuuu { nil.foo }
+# works
+```
+
 
 ## Development
 
@@ -32,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fuuu. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sophiedeziel/fuuu. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
