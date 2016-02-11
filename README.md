@@ -33,7 +33,7 @@ fuuu { nil.a_method_that_throws_undefined_method }
 
 ```
 
-If you foget how many 'u's there are, put as much as you want.
+If you forget how many 'u's there are, put as much as you want.
 
 ```ruby
 fuuu { nil.foo }
