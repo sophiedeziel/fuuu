@@ -26,6 +26,11 @@ describe Fuuu do
     fuuuuuuu { nil.call }
   end
 
+  it "does nothing when there is no error" do
+    expect(Launchy).not_to receive(:open)
+    fuuuuuuu { var = "foo" }
+  end
+
   it "does not intefere with other missing methods" do
     expect { missing_method }.to raise_error(NameError)
   end

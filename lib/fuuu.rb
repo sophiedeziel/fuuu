@@ -12,7 +12,7 @@ module Fuuu
   def self.method_missing(method_name, *args, &block)
     if matches_fuuu?(method_name)
       begin
-        block.call(*args)
+        block.call
       rescue => e
         Launchy.open("http://stackoverflow.com/search?q=[ruby]\"#{e.message}\"")
       end
@@ -28,9 +28,9 @@ module Fuuu
   end
 end
 
-def method_missing(method)
+def method_missing(method, *args, &block)
   if Fuuu.respond_to?(method)
-    Fuuu.send(method)
+    Fuuu.send(method, *args, &block)
   else
     super(method)
   end
