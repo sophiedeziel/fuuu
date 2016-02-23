@@ -2,37 +2,29 @@ require "fuuu/version"
 require 'launchy'
 
 module Fuuu
+  def self.included(mod)
+    42.times do |i|
+      method_name = "f#{("u" * (i + 1))}"
 
-  METHOD_PATTERN = /^f[u]+$/
-
-  def self.respond_to?(method_name, include_private = false)
-    super || matches_fuuu?(method_name)
-  end
-
-  def self.method_missing(method_name, *args, &block)
-    if matches_fuuu?(method_name)
-      begin
-        block.call
-      rescue => e
-        Launchy.open("http://stackoverflow.com/search?q=[ruby]\"#{e.message}\"")
+      mod.define_singleton_method(method_name) do |&block|
+        Fuuu.fu_call &block
       end
-    else
-      super
+
+      define_method(method_name) do |&block|
+        Fuuu.fu_call &block
+      end
     end
   end
 
   private
 
-  def self.matches_fuuu?(string)
-    METHOD_PATTERN =~ string
+  def self.fu_call
+    begin
+      yield if block_given?
+    rescue => e
+      Launchy.open("http://stackoverflow.com/search?q=[ruby]\"#{e.message}\"")
+    end
   end
 end
 
-def method_missing(method, *args, &block)
-  if Fuuu.respond_to?(method)
-    Fuuu.send(method, *args, &block)
-  else
-    super(method)
-  end
-end
-
+include Fuuu
