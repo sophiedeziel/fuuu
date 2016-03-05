@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Fuuu do
-  class Sample
+  class SampleClass
     include Fuuu
   end
 
-  subject { Sample.new }
+
+  subject { SampleClass.new }
 
   it 'has a version number' do
     expect(Fuuu::VERSION).not_to be nil
@@ -20,10 +21,18 @@ describe Fuuu do
 
   it "opens stack overflow on exception throwing block" do
     expect(Launchy).to receive(:open).with("http://stackoverflow.com/search?q=[ruby]\"undefined method `call' for nil:NilClass\"")
-    Sample.new.fuuu { nil.call }
+    subject.fuuu { nil.call }
   end
 
   it "provides a global method" do
+    expect(Launchy).to receive(:open).with("http://stackoverflow.com/search?q=[ruby]\"undefined method `call' for nil:NilClass\"")
+    module SampleModule
+      include Fuuu
+      fuuuuuuu { nil.call }
+    end
+  end
+
+  it "provides a module method" do
     expect(Launchy).to receive(:open).with("http://stackoverflow.com/search?q=[ruby]\"undefined method `call' for nil:NilClass\"")
     fuuuuuuu { nil.call }
   end
