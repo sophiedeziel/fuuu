@@ -1,5 +1,7 @@
 # Fuuu
 
+[![Build Status](https://travis-ci.org/sophiedeziel/fuuu.svg?branch=master)](https://travis-ci.org/sophiedeziel/fuuu)
+
 ![alt tag](https://raw.githubusercontent.com/sophiedeziel/fuuu/master/fuuu.jpg)
 
 Copy/pasting error messages? It's so 2015!
